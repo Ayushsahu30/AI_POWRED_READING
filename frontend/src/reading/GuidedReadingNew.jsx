@@ -2,13 +2,14 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import ReadScreenNew from "./ReadScreenNew";
 
-function GuidedReadingNew({ document, setDocument }) {
+function GuidedReadingNew({ document, setDocument, onClearDocument }) {
   const { paragraphs, readingProgress } = document;
   const { paragraphIndex } = readingProgress;
 
   const [showExplanation, setShowExplanation] = useState(false);
   const [explanation, setExplanation] = useState("");
   const [isLoadingExplanation, setIsLoadingExplanation] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(readingProgress.isCompleted || false);
 
   const currentParagraph = paragraphs[paragraphIndex];
 
@@ -29,8 +30,49 @@ function GuidedReadingNew({ document, setDocument }) {
       toast.info("Moving to next paragraph...");
     } else {
       toast.success("🎉 Congratulations! You've finished reading all paragraphs!");
+      const updated = {
+        ...document,
+        readingProgress: {
+          ...readingProgress,
+          isCompleted: true
+        }
+      };
+      localStorage.setItem("document", JSON.stringify(updated));
+      setDocument(updated);
+      setIsCompleted(true);
     }
   };
+
+  if (isCompleted) {
+    return (
+      <div className="completion-container">
+        <div className="completion-icon">
+          🎉
+        </div>
+        <h1 className="completion-title">
+          Congratulations!
+        </h1>
+        <p className="completion-subtitle">
+          You have successfully completed reading <strong>{document.fileName}</strong>!
+        </p>
+
+        <div className="completion-stats">
+          <div className="completion-stat-card">
+            <span className="completion-stat-label">Total Paragraphs</span>
+            <span className="completion-stat-value">{paragraphs.length}</span>
+          </div>
+          <div className="completion-stat-card">
+            <span className="completion-stat-label">Progress</span>
+            <span className="completion-stat-value">100%</span>
+          </div>
+        </div>
+
+        <button className="btn-primary btn-lg" onClick={onClearDocument}>
+          📤 Upload New Document
+        </button>
+      </div>
+    );
+  }
 
   const handlePreviousParagraph = () => {
     if (paragraphIndex > 0) {

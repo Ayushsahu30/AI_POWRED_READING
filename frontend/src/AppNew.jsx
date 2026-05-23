@@ -144,6 +144,7 @@ function App() {
           <GuidedReadingNew
             document={document}
             setDocument={setDocument}
+            onClearDocument={handleClearDocument}
           />
         )}
       </main>

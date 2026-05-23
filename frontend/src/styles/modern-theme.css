@@ -832,3 +832,112 @@ textarea::placeholder {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.18);
 }
+
+/* =====================================================
+   COMPLETION SCREEN
+===================================================== */
+.completion-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  max-width: 600px;
+  margin: 40px auto;
+  animation: completionFadeIn 0.6s ease-out;
+}
+
+@keyframes completionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.completion-icon {
+  font-size: 4rem;
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+  border-radius: 50%;
+  border: 2px solid rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.15);
+  animation: completionPulse 2s infinite ease-in-out;
+}
+
+@keyframes completionPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.15);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 45px rgba(16, 185, 129, 0.3);
+  }
+}
+
+.completion-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.completion-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 480px;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.completion-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+.completion-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.completion-stat-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.completion-stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
