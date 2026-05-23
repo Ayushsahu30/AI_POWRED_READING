@@ -73,7 +73,7 @@ Do NOT mention that this is Level 1 or Level 2 in your answer. Just give the exp
 `;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-2.5-flash-lite",
       contents: prompt,
       config: {
         systemInstruction: "You are a clear, kind reading tutor.",
@@ -164,7 +164,7 @@ Student teach-back:
 `;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-2.5-flash-lite",
       contents: evalPrompt,
       config: {
         systemInstruction: "You are a strict but fair evaluator. Only emit valid JSON, no other text.",
@@ -260,7 +260,7 @@ No extra text.
 `;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-2.5-flash-lite",
       contents: prompt,
       config: {
         systemInstruction: "Output valid JSON only. No markdown. No extra words.",
@@ -338,7 +338,7 @@ Return ONLY strict JSON:
 `;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-2.5-flash-lite",
       contents: prompt,
       config: {
         systemInstruction: "Output valid JSON only.",
@@ -433,7 +433,7 @@ Keep the definition simple and clear. No extra text.
 `;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-2.5-flash-lite",
       contents: prompt,
       config: {
         systemInstruction: "Output valid JSON only. No markdown. No extra words.",
