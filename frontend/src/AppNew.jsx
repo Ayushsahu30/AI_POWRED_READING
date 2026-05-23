@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./styles/landing-page.css";
+import LandingPage from "./components/LandingPage";
 import FileUpload from "./components/FileUploadNew";
 import GuidedReadingNew from "./reading/GuidedReadingNew";
 
@@ -12,6 +14,12 @@ function App() {
   const [document, setDocument] = useState(() => {
     const saved = localStorage.getItem("document");
     return saved ? JSON.parse(saved) : null;
+  });
+
+  const [showLanding, setShowLanding] = useState(() => {
+    // Show landing page only if there's no document loaded
+    const saved = localStorage.getItem("document");
+    return !saved;
   });
 
   const [error, setError] = useState("");
@@ -72,12 +80,27 @@ function App() {
     setError("");
   };
 
+  const handleGetStarted = () => {
+    setShowLanding(false);
+  };
+
+  // Show landing page
+  if (showLanding && !document) {
+    return <LandingPage onGetStarted={handleGetStarted} />;
+  }
+
   return (
     <div className="app-wrapper">
       {/* Header */}
       <header className="app-header">
         <div className="header-content">
-          <div className="app-logo">
+          <div
+            className="app-logo"
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              if (!document) setShowLanding(true);
+            }}
+          >
             📖 ReadFlow
           </div>
           {document && (

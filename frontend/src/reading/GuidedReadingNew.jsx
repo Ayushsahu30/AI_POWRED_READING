@@ -138,26 +138,11 @@ function GuidedReadingNew({ document, setDocument }) {
 
         {/* Explanation Section */}
         {showExplanation && (
-          <div style={{
-            marginTop: "32px",
-            padding: "24px",
-            background: "#fffbeb",
-            border: "1px solid #fcd34d",
-            borderRadius: "12px"
-          }}>
-            <h3 style={{
-              marginBottom: "16px",
-              color: "var(--text-primary)",
-              fontSize: "1.1rem"
-            }}>
+          <div className="explanation-card">
+            <h3>
               💡 Explanation
             </h3>
-            <p style={{
-              color: "var(--text-primary)",
-              lineHeight: "1.8",
-              marginBottom: "24px",
-              fontSize: "0.95rem"
-            }}>
+            <p>
               {explanation}
             </p>
             <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
